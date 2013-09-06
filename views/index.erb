@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+      <title>Chronular: a Chronic expression editor and tester</title>
+      <meta name="keywords" content="time expression, chronic, ruby, rails, programming, development, editor, tester, builder, tool">
+      <meta name="description" content="Chronular is a Chronic-based time expression editor and tester. It's a handy way to test time expressions as you write them. Chronular is an especially good fit for Ruby and Rails developers, since it uses Ruby on the server to evaluate time expression.">
+      <link href="/css/application.css" media="screen" rel="stylesheet" type="text/css" />
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script src="/javascript/jquery.zclip.min.js"></script>
+      <script src="/javascript/application.js"></script>
+   </head>
+   <body onload="Chronular.init()">
+      <div id="main">
+         <h1><a href="/">Chronular</a></h1>
+         <h2>a Chronic based time expression editor</h2>
+         <div id="inner" class="gainlayout">
+            <div id="form_wrapper">
+               <form accept-charset="UTF-8" action="/chronic/do_test" id="test_form" method="post">
+                  <div style="margin:0;padding:0;display:inline">
+                     <input name="utf8" type="hidden" value="&#x2713;" />
+                  </div>
+                  <div id="test_and_result" class="gainlayout">
+                     <label id="time_label" for="time">Your time expression:</label><br />
+                     <input id="time" name="time" size="80" tabindex="1" type="text" value="<%= time %>"><br />
+                     <div id="result">
+                        <% if defined? result %>
+                           <div class="time"><%= result %></div>
+                        <% end %>
+                        <% if defined? errors %>
+                           <div class="error"><%= errors %></div>
+                        <% end %>
+                        <div class="notice" id="start_instructions">
+                           Chronular is a Chronic-based time expression editor. It's a handy way to test time expressions as you write them.<br /><br />
+                           To start, enter a time expression. Or you can <a href="#" onclick="Chronular.example(); return false;">try an example</a>.
+                        </div>
+                     </div>
+                  </div>
+               </form>
+            </div>
+            <div class="form_controls">
+               <a href="#" id="copy_link">copy permalink</a>
+               <a href="#" onclick="Chronular.clearFields(); return false;">clear field</a>
+            </div>
+         </div>
+         <h3>Chronular quick reference</h3>
+         <div id="quickref">
+            <div id="examples">
+               <div style="float:left">
+                  <table>
+                     <tr>
+                       <td><code>now</code></td>
+                       <td><%= Chronic.parse("now") %></td>
+                     </tr>
+                     <tr>
+                       <td><code>tomorrow</code></td>
+                       <td><%= Chronic.parse("tomorrow") %></td>
+                     </tr>
+                     <tr>
+                       <td><code>yesterday</code></td>
+                       <td><%= Chronic.parse("yesterday") %></td>
+                     </tr>
+                     <tr>
+                       <td><code>last week</code></td>
+                       <td><%= Chronic.parse("last week") %></td>
+                     </tr>
+                     <tr>
+                       <td><code>next week</code></td>
+                       <td><%= Chronic.parse("next week") %></td>
+                     </tr>
+                     <tr>
+                       <td><code>this tuesday</code></td>
+                       <td><%= Chronic.parse("this tuesday") %></td>
+                     </tr>
+                     <tr>
+                       <td><code>next month</code></td>
+                       <td><%= Chronic.parse("next month") %></td>
+                     </tr>
+                     <tr>
+                       <td><code>this morning</code></td>
+                       <td><%= Chronic.parse("this morning") %></td>
+                     </tr>
+                  </table>
+               </div>
+               <div>
+                  <table>
+                     <tr>
+                       <td><code>yesterday at 4:00</code></td>
+                       <td><%= Chronic.parse("yesterday at 4:00") %></td>
+                     </tr>
+                     <tr>
+                       <td><code>last friday at 20:00</code></td>
+                       <td><%= Chronic.parse("last friday at 20:00") %></td>
+                     </tr>
+                     <tr>
+                       <td><code>tomorrow at 6:45pm</code></td>
+                       <td><%= Chronic.parse("tomorrow at 6:45pm") %></td>
+                     </tr>
+                     <tr>
+                       <td><code>afternoon yesterday</code></td>
+                       <td><%= Chronic.parse("afternoon yesterday") %></td>
+                     </tr>
+                     <tr>
+                       <td><code>thursday last week</code></td>
+                       <td><%= Chronic.parse("thursday last week") %></td>
+                     </tr>
+                     <tr>
+                       <td><code>3 years ago</code></td>
+                       <td><%= Chronic.parse("3 years ago") %></td>
+                     </tr>
+                     <tr>
+                       <td><code>5 months before now</code></td>
+                       <td><%= Chronic.parse("5 months before now") %></td>
+                     </tr>
+                     <tr>
+                       <td><code>in 3 hours</code></td>
+                       <td><%= Chronic.parse("in 3 hours") %></td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+         </div>
+         <div id="birdseed" class="birdseed">
+            <p>For a complete Chronic guide, see the <a href="https://github.com/mojombo/chronic">Project page</a>.</p>
+            <p>Made by <a href="#">Michael Gannon</a>, however this is a shameless rip off of the much better <a href="www.rubular.com">Rubular</a> made by <a href="http://lovitt.net">Michael Lovitt</a> <span class="birdseed_note">(<a href="http://twitter.com/lovitt">@lovitt</a>)</span> for Ruby regex testing, go check it out and donate to his page.</p>
+            </p>
+         </div>
+      </div>
+   </body>
+</html>
