@@ -14,7 +14,7 @@ var Chronular = {
     }).zclip({
        path:'/swf/ZeroClipboard.swf',
        copy: function () {
-         return "http://chronular.com/chronic/do_test?" + $('#time')[0].value;
+         return "http://chronular.com/chronic/do_test?time=" + $('#time')[0].value;
        },
        afterCopy: function() {
         //dont show the defualt alertbox
