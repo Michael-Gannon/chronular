@@ -2,7 +2,7 @@ var Chronular = {
   example: function() {
     var examples = $('#examples tr');
     var example = $('code', examples[Math.floor(Math.random() * examples.length)]);
-    window.location = "http://chronular.com/chronic/do_test?" + example.text();
+    window.location = "http://chronular.com/chronic/do_test?time=" + example.text();
   },
   clearFields: function() {
     $('#time')[0].value = '';
